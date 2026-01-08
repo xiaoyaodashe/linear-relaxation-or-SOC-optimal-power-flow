@@ -157,11 +157,4 @@ for t=1:nt
     lamda_p=[lamda_p,dual(con(['lamda_p_',num2str(t)]))];
     lamda_q=[lamda_q,dual(con(['lamda_q_',num2str(t)]))];
 end
-%%---- 更正电压相角 -------------------------------------------------------
-mpc.bus(:,VM) = V;
-mpc.bus(:,VA) = theta/pi*180;
-mpc.gen(:,PG) = P;
-mpc.gen(:,QG) = Q;
-mpc.gen(:,VG) = Vgen_bus'*V;
-[MVAbase, bus, gen, branch, success, et] = runpf(mpc);
-obj = gen(:,PG)'*gencost(1:ng,COST+1)+gen(:,QG)'*gencost(ng+1:2*ng,COST+1);
+
